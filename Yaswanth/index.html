@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+ <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<title>Online book store</title>
+	<script>
+	  function load() {
+	  console.log("you clicked me");
+     document.getElementById("page").innerHTML='<object type="text/html" data="login.html" ></object>';
+}
+	</script>
+ </head>
+ <body>
+ <h1 align="center">Online book Store </h1>
+ <nav>
+    <a href="">Home</a><a onclick="load()">Login</a><a href="">Register</a><a href="">Catlog</a><a href="">Add to cart</a>
+ </nav>
+ <div id="page"></div>
+ </body>
+</html>
