@@ -1,7 +1,13 @@
+
 a {
 	padding:5px 5px 5px 5px;
 	color:white;
+	cursor:pointer;
 }
+a:hover {
+	background-color:#73afe0;
+}
+
 html {
 	height:100%;
 }
@@ -10,6 +16,5 @@ nav {
 	justify-content:space-evenly;
     background-color:#61a1d6;
 }
-object{
-	align-content:center;
-}
+
+

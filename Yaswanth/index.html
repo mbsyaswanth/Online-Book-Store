@@ -1,12 +1,15 @@
+
 <!doctype html>
 <html>
  <head>
     <link rel="stylesheet" type="text/css" href="style.css">
 	<title>Online book store</title>
+	<link rel="icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
 	  function load() {
 	  console.log("you clicked me");
-     document.getElementById("page").innerHTML='<object type="text/html" data="login.html" ></object>';
+     document.getElementById("page").innerHTML='<iframe src="login.html" width="100%" frameborder="0" allowfullscreen sandbox></iframe>';
 }
 	</script>
  </head>
@@ -17,4 +20,5 @@
  </nav>
  <div id="page"></div>
  </body>
+
 </html>
