@@ -1,11 +1,11 @@
 
-a {
+nav a {
 	padding:5px 5px 5px 5px;
 	color:white;
 	cursor:pointer;
 }
-a:hover {
-	background-color:#73afe0;
+nav a:hover {
+	background-color:#237cc3;
 }
 
 html {
@@ -17,4 +17,4 @@ nav {
     background-color:#61a1d6;
 }
 
-
+ 

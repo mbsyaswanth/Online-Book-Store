@@ -7,16 +7,21 @@
 	<link rel="icon" href="favicon.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
-	  function load() {
+	  function home() {
 	  console.log("you clicked me");
-     document.getElementById("page").innerHTML='<iframe src="login.html" width="100%" frameborder="0" allowfullscreen sandbox></iframe>';
-}
+     document.getElementById("page").innerHTML='<iframe src=login.html width="100%" frameborder="0"  sandbox></iframe>';
+     }
+	 function catlog() {
+	  console.log("you clicked me");
+     document.getElementById("page").innerHTML='<iframe src=csecatlog.html width="100%" frameborder="0" allowfullscreen sandbox></iframe>';
+    }
+    
 	</script>
  </head>
  <body>
  <h1 align="center">Online book Store </h1>
  <nav>
-    <a href="">Home</a><a onclick="load()">Login</a><a href="">Register</a><a href="">Catlog</a><a href="">Add to cart</a>
+    <a href="">Home</a><a onclick="home()">Login</a><a href="">Register</a><a onclick="catlog()">Catlog</a><a href="">Add to cart</a>
  </nav>
  <div id="page"></div>
  </body>
