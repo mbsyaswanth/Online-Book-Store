@@ -1,5 +1,5 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html>
  <head>
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -7,23 +7,77 @@
 	<link rel="icon" href="favicon.ico" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script>
-	  function home() {
-	  console.log("you clicked me");
-     document.getElementById("page").innerHTML='<iframe src=login.html width="100%" frameborder="0"  sandbox></iframe>';
-     }
-	 function catlog() {
-	  console.log("you clicked me");
-     document.getElementById("page").innerHTML='<iframe src=csecatlog.html width="100%" frameborder="0" allowfullscreen sandbox></iframe>';
-    }
-    
+
+
+    function display(a) {
+      var b=["home","login","register","catlog"];
+      for (var i = 0; i < b.length; i++) {
+        console.log("i am here, right inside the loop");
+        document.getElementById(b[i]).style.display="none";
+      }
+      console.log("you clicked home");
+      document.getElementById(a).style.display="block";
+
+    };
+
 	</script>
  </head>
  <body>
+ <header>
  <h1 align="center">Online book Store </h1>
+</header>
  <nav>
-    <a href="">Home</a><a onclick="home()">Login</a><a href="">Register</a><a onclick="catlog()">Catlog</a><a href="">Add to cart</a>
+
+     <a onclick="display('home')">Home</a>
+     <a onclick="display('login')">Login</a>
+     <a onclick="display('register')">Register</a>
+     <a onclick="display('catlog')">Catlog</a>
+     <a href="">Add to cart</a>
+
  </nav>
- <div id="page"></div>
+ <section>
+
+ <div id="login">
+   <form method="post">
+   <div class="fo">
+
+     <label>Login Id:<input type="text" name="loginid"></label>
+
+     <label>Password:<input type="text" name="password"></label>
+
+     <label class="form_butons"><input type="reset" name="reset" ><input type="submit" name="reset" ></label>
+
+  </div>
+   </form>
+ </div>
+ <div id="home">
+   <p>This will be homepage soon</p>
+ </div>
+ <div id="register">
+   <p>this will be registration page soon</p>
+ </div>
+ <div id="catlog">
+   <p>We are building this page</p>
+   <style>
+   .catlogtable {
+   	border-collapse: collapse;
+       width: 100%;
+   }
+    .catlogtable th, .catlogtable td {
+   	border: 1px solid #ddd;
+       padding: 8px;
+   }
+   </style>
+   <table class="catlogtable">
+     <tr>
+       <th>Book Cover</th><th>Book Name</th><th>Author</th><th>Price</th>
+     </tr>
+     <tr align="center">
+       <td colspan="4"><a href="">Add to cart</a></td>
+     </tr>
+   </table>
+ </div>
+</section>
  </body>
 
 </html>
