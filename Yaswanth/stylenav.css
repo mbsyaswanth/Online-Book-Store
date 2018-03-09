@@ -1,0 +1,123 @@
+
+nav > ul{
+	display:flex;
+	justify-content:flex-end;
+	align-items: flex-end;
+	padding: 0;
+
+	list-style: none;
+	height: 100%;
+
+}
+nav ul li{
+	padding:5px 5px 5px 5px;
+	color:white;
+	cursor:pointer;
+	font-size: 17px;
+  font-weight: 900;
+}
+nav li:hover {
+	background-color:#237cc3;
+}
+.dropdown{
+	display: none;
+	position: absolute;
+	top: 100%;
+}
+
+.heading{
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	font-size: 30px;
+	align-self:center;
+
+}
+.dropdown_parent:hover .dropdown{
+	display: block;
+  width:100%;
+  left:0px;
+	background-color: #DCD9D4;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+  background-blend-mode: soft-light,screen;
+	box-shadow: 2px 3px 8px 0px #b3b5bb;
+}
+.dropdown ul {
+	padding: 0px;
+	list-style: none;
+}
+
+.dropdown_parent{
+	position: relative;
+}
+/* Checkbox hack */
+/* @media (max-width:600px){
+	nav .nav-btn label{
+		display: flex;
+		position: relative;
+		justify-content: space-around;
+		align-items: center;
+		flex-direction: column;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    border: 1px solid white;
+		border-radius: 2px;
+		cursor:pointer;
+	}
+  nav .nav-btn label:hover{
+		box-shadow: 0px 0px 4px grey;
+	}
+	nav .nav-btn label span{
+		background-color: white;
+		display: block;
+    height: 1px;
+		width: 100%;
+    border-top: 2px solid #eee;
+	}
+	.responsive{
+		position: absolute;
+    display: flex;
+		flex-direction: column;
+    align-items: center;
+    color: black;
+    opacity:0.95;
+    width: 60%;
+    transition: all 0.3s ease-in-out;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+	}
+} */
+.logo{
+	top: 15px;
+    left: 10px;
+    position: fixed;
+  margin-right: auto;
+  margin-bottom: 5px;
+}
+html, body {
+	height:100%;
+	margin: 0;
+	box-sizing: border-box;
+
+}
+
+nav{
+	display: flex;
+	flex-direction: column;
+	height: 12%;
+	min-height: 70px;
+	box-shadow: 0px 2px 8px 0px #6d79a0;
+	background-color: #DCD9D4;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.50) 0%, rgba(0,0,0,0.50) 100%), radial-gradient(at 50% 0%, rgba(255,255,255,0.10) 0%, rgba(0,0,0,0.50) 50%);
+  background-blend-mode: soft-light,screen;
+}
+* {
+	margin: 0;
+}
+html{
+	display: flex;
+	flex-flow: column;
+
+}

@@ -1,4 +1,4 @@
-nav {
+/* nav {
 	display:flex;
 	justify-content:space-evenly;
     background-color:#61a1d6;
@@ -29,7 +29,7 @@ header{
 }
 nav{
 	height: 4%;
-}
+} */
 * {
 	margin: 0;
 }
@@ -38,11 +38,7 @@ html{
 	flex-flow: column;
 
 }
-nav {
-	display:flex;
-	justify-content:space-evenly;
-    background-color:#61a1d6;
-}
+
  .fo {
 	display: flex;
 	flex-flow: column wrap;
@@ -54,13 +50,13 @@ nav {
 	width: 300px;
 	height: 360px;
 }
-.fo > label{
+#login .fo > label{
   font-size: 20px;
 }
-.fo > label > input{
+#login .fo > label > input{
 	padding: 0.5em;
 }
-.form_butons >input {
+#login .form_butons >input {
 	margin: 0px 10px 0px 10px;
 }
 section{
@@ -69,10 +65,16 @@ section{
 #register, #catlog, #login {
 	display: none;
 }
-#login {
+#login, #register {
 	height: 100%;
 }
-#login form {
+#login .forms {
+	display:flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+}
+#register .forms {
 	display:flex;
 	height: 100%;
 	align-items: center;
