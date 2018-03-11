@@ -1,4 +1,8 @@
 
+nav {
+	position: sticky;
+	top:-1px;
+}
 nav > ul{
 	display:flex;
 	justify-content:flex-end;
@@ -9,6 +13,8 @@ nav > ul{
 	height: 100%;
 
 }
+
+
 nav ul li{
 	padding:5px 5px 5px 5px;
 	color:white;
@@ -23,6 +29,12 @@ nav li:hover {
 	display: none;
 	position: absolute;
 	top: 100%;
+}
+.dropdown ul li{
+	padding: 0px;
+}
+.dropdown ul li a{
+	padding: 5px;
 }
 
 .heading{

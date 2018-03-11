@@ -13,7 +13,7 @@
      <div class="logo" > <img src="favicon.ico" width="50px"></div>
      <ul class="responsive">
         <li> <a onclick="display('home')">Home</a> </li>
-        <li> <a onclick="display('login')">Login</a> </li>
+        <li> <a onclick="loadDoc()">Login</a> </li>
         <li> <a onclick="display('register')">Register</a> </li>
         <li class="dropdown_parent"> <a onclick="display('catlog')">Catlog</a>
           <div class="dropdown">
@@ -34,5 +34,20 @@
         </div>
      </ul>
    </nav>
+   <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          document.getElementById("demo").innerHTML =
+          this.responseText;
+        }
+      };
+      xhttp.open("GET", "login.html", true);
+      xhttp.send();
+    }
+  </script>
+  <div id="demo"></div>
+
   </body>
 </html>

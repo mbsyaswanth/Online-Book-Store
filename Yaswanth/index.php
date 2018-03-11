@@ -1,3 +1,10 @@
+<?php
+// Start the session
+session_start();
+?>
+<?php
+   $a=isset($_SESSION['user']);
+ ?>
 <!DOCTYPE html>
 <html>
  <head>
@@ -12,61 +19,69 @@
     function display(a) {
       var b=["home","login","register","catlog"];
       for (var i = 0; i < b.length; i++) {
-        console.log("i am here, right inside the loop");
         document.getElementById(b[i]).style.display="none";
       }
-      console.log("you clicked home");
       document.getElementById(a).style.display="block";
 
     };
 
 	</script>
+  <script>
+   function loadDoc() {
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("login").innerHTML =this.responseText;
+       }
+     };
+     xhttp.open("GET", "account.php", true);
+     xhttp.send();
+   }
+   if(<?php echo "$a"; ?>){
+     loadDoc();
+   }
+ </script>
  </head>
  <body>
- <header>
- <h1 align="center">Online book Store </h1>
-</header>
-<?php
-//Code to connect database
- $connect=mysqli_connect("localhost","root","","bookstore");
-  if(!$connect)
- $status= "error connecting to database..".mysqli_connect_error();
- else {
- $status= "Connected successfully";
- }
-  echo $status; // to Know whether connected or -
- ?>            //-if there is some error
+ <?php
+   include 'db_conn.php';
+ ?>
+ <?php
+   $user_status=(isset($_SESSION['user'])?"Logout":"Login");
+ ?>
  <nav>
-
-     <a onclick="display('home')">Home</a>
-     <a onclick="display('login')">Login</a>
-     <a onclick="display('register')">Register</a>
-     <a onclick="display('catlog')">Catlog</a>
-     <a href="">Add to cart</a>
-
+   <div class="heading">Online book Store </div>
+   <div class="logo" > <img src="favicon.ico" width="50px"></div>
+   <ul class="responsive">
+      <li> <a onclick="display('home')">Home</a> </li>
+      <li> <a onclick="display('login')"><?php echo "$user_status"; ?></a> </li>
+      <li> <a onclick="display('register')">Register</a> </li>
+      <li class="dropdown_parent"> <a onclick="display('catlog')">Catlog</a>
+        <div class="dropdown">
+          <ul>
+            <li onmouseup="display('catlog')"> <a href="?c=cse">CSE</a>  </li>
+            <li onclick="display('catlog')"> <a href="?c=ece">ECE</a>  </li>
+            <li onclick="display('catlog')"> <a href="?c=mech">MECH</a> </li>
+          </ul>
+        </div>
+      </li>
+      <li> <a href="">Cart</a> </li>
+      <div class="nav-btn">
+         <label>
+            <span></span>
+            <span></span>
+            <span></span>
+         </label>
+      </div>
+   </ul>
  </nav>
  <section>
 
  <div id="login">
-   <?php
-       if(isset($_POST['Lsubmit'])){
-         $login=$_POST['loginid'];
-         $password=$_POST['key'];
-         $query="SELECT * FROM `login` WHERE email='$login' AND password='$password'";
-         $result=mysqli_query($connect,$query);
-         $count=mysqli_num_rows($result);
-         if($count==1){
-           echo "<script>alert('Login success');</script>";
-         }
-         else {
-           echo "<script>alert('Login Fail, verify account details');</script>";
-         }
-       }
-    ?>
-   <form class="forms" method="post" action="index.php">
+   <form class="forms" method="post" action="login_check.php">
    <div class="fo">
 
-     <label>Login Id:<input type="text" name="loginid"></label>
+     <label>Login Id:<input type="email" name="loginid" placeholder="enter email"></label>
 
      <label>Password:<input type="password" name="key"></label>
 
@@ -85,7 +100,7 @@
         $email=$_POST['email'];
         $password=$_POST['password'];
         $phone=$_POST['phone'];
-        $check="SELECT * FROM `login` WHERE email='$email'";
+        $check="SELECT * FROM `login` WHERE usr_email='$email'";
         $verify=mysqli_query($connect,$check);
         $rows = mysqli_num_rows($verify);
         if ($rows>0) {
@@ -93,7 +108,7 @@
         }
         else{
           $registerQ=
-          "INSERT INTO `login`(`NAME`, `EMAIL`, `PASSWORD`, `PHONE`) VALUES ('$name','$email','$password','$phone')";
+          "INSERT INTO `login`(`usr_name`, `usr_email`, `usr_password`, `usr_phone`) VALUES ('$name','$email','$password','$phone')";
           $Rquery=mysqli_query($connect,$registerQ);
           if($Rquery){
             echo "<script>alert('user Created');</script>";
@@ -125,24 +140,7 @@
  </div>
  <div id="catlog">
    <p>We are building this page</p>
-   <style>
-   .catlogtable {
-   	border-collapse: collapse;
-       width: 100%;
-   }
-    .catlogtable th, .catlogtable td {
-   	border: 1px solid #ddd;
-       padding: 8px;
-   }
-   </style>
-   <table class="catlogtable">
-     <tr>
-       <th>Book Cover</th><th>Book Name</th><th>Author</th><th>Price</th>
-     </tr>
-     <tr align="center">
-       <td colspan="4"><a href="">Add to cart</a></td>
-     </tr>
-   </table>
+   <?php include 'book_box.php'; ?>
  </div>
 </section>
  </body>
