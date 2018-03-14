@@ -16,15 +16,22 @@ nav > ul{
 }
 
 .navmargin{
-  margin-top:85px;
+  margin-top:90px;
 }
 
 nav ul li{
-	padding:10px;
 	color:white;
 	cursor:pointer;
 	font-size: 17px;
   font-weight: 900;
+}
+nav ul li a{
+	padding: 10px;
+	display: block;
+	color: inherit;
+	text-decoration: none;
+}
+
 }
 a{
 	color: inherit;
@@ -39,13 +46,13 @@ nav li:hover {
 	position: absolute;
 	top: 100%;
 }
-.dropdown ul li{
+/* .dropdown ul li{
 	padding: 0px;
 }
 .dropdown ul a{
 	display: block;
 	padding: 10px;
-}
+} */
 
 .heading{
 	text-align: center;

@@ -38,6 +38,22 @@ html{
 	flex-flow: column;
 
 }
+.homepage{
+margin: 30px;
+padding: 20px;
+
+}
+.quotes{
+	padding: 20px;
+	margin:20px;
+	border-radius: 4px;
+}
+
+.displaybook{
+	width:40%;
+	border: 1px solid #4d90fe;
+	border-radius: 2px;
+}
 
  .fo {
 	 border: 2px solid #4d90fe;
@@ -101,7 +117,6 @@ section{
 }
 
 /* end */
-
 
 #register, #catlog, #login, #cart {
 	display: none;

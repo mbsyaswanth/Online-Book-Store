@@ -1,45 +1,18 @@
 
-<html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="book_box_style.css">
-    <title>Catlog Page</title>
-  </head>
-  <body>
+<?php
+// Start the session
+session_start();
+?>
+
     <?php
       include 'db_conn.php';
     ?>
     <?php
 
-     // count number of cart cartItems
-     $a=isset($_SESSION['user']);
-     if($a){
-        $user=$_SESSION['user'];
-        $query="SELECT * FROM `cart` WHERE usr_email='$user'";
-        $boo_id=mysqli_query($connect,$query);
-        $count=mysqli_num_rows($boo_id);
-        $_SESSION["cartItems"]=$count;
-
-     }
      $cat=htmlspecialchars($_GET["c"]);
-     if ($cat==="cart") {
-        $a=isset($_SESSION['user']);
-        if($a){
-           $user=$_SESSION['user'];
-           $uery="SELECT * FROM `cart` WHERE usr_email='$user'";
-           $boo_id=mysqli_query($connect,$uery);
-           $count=mysqli_num_rows($boo_id);
-           $_SESSION["cartItems"]=$count;
-
-        }else{
-          echo "<script>alert('Please login first');</script>";
-          echo "<script>window.location.href = 'index.php';</script>";
-        }
-     } else{
      $bquery="SELECT * FROM `book` WHERE book_cat='$cat'";
      $bresult=mysqli_query($connect,$bquery);
-    }
+    
     ?>
     <div class="bcontainer">
       <?php while ($row = mysqli_fetch_array($bresult)) { ?>
@@ -68,5 +41,3 @@
        echo "<script>display('catlog');</script>";
       ?>
     </div>
-  </body>
-</html>

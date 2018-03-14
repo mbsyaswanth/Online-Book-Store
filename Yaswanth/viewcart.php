@@ -1,4 +1,7 @@
-
+<?php
+// Start the session
+session_start();
+?>
 <?php
   include 'db_conn.php';
 ?>
@@ -9,7 +12,7 @@ if(!$a)
 {
   echo "<script>alert('Please login first');</script>";
   echo "<script>window.location.href = 'index.php'; </script>";
-}
+}else{
  ?>
 <?php
   $user=$_SESSION['user'];
@@ -46,7 +49,7 @@ if(!$a)
       </ul>
      </div>
    </div>
- <?php } }
+ <?php } } }
     echo "<script>display('catlog');</script>";
    ?>
  </div>

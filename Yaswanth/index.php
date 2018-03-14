@@ -19,7 +19,7 @@ session_start();
 
 
     function display(a) {
-      console.log("i was clicked");
+      console.log("i was clicked"+a);
       var b=["home","login","register","catlog","cart"];
       for (var i = 0; i < b.length; i++) {
         document.getElementById(b[i]).style.display="none";
@@ -28,9 +28,19 @@ session_start();
 
     };
 
+    // function urlhandle() {
+    //   if(location.search=="?c=cse")
+    //   {
+    //     console.log("match found");
+    //     display('catlog');
+    //   }
+    // }
+    // urlhandle();
+
 	</script>
   <script>
-   function loadDoc(b,page,t) {
+   function loadD(b,page,t) {
+     console.log('loadDoc is clicked');
      var xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
@@ -40,10 +50,24 @@ session_start();
      xhttp.open("GET", page , t);
      xhttp.send();
    }
-   if(<?php echo "$a"; ?>){
+ </script>
+  <script>
+   function loadDoc(b,page,t) {
+     console.log('loadDoc is clicked');
+     var xhttp = new XMLHttpRequest();
+     xhttp.onreadystatechange = function() {
+       if (this.readyState == 4 && this.status == 200) {
+         document.getElementById(b).innerHTML =this.responseText;
+       }
+     };
+     xhttp.open("GET", page , t);
+     xhttp.send();
+   }
+   if(<?php echo $a; ?>){
      loadDoc("login",'account.php','true');
    }
  </script>
+
  </head>
  <body>
  <?php
@@ -67,16 +91,16 @@ session_start();
       <li> <a onclick="display('home')">Home</a> </li>
       <li> <a onclick="display('login')"><?php echo "$user_status"; ?></a> </li>
       <li> <a onclick="display('register')">Register</a> </li>
-      <li class="dropdown_parent"> <a onclick="display('catlog')">Catlog</a>
+      <li class="dropdown_parent "> <a onclick="display('catlog')">Catlog</a>
         <div class="dropdown">
           <ul>
-            <li onclick="display('catlog')"> <a href="?c=cse">CSE</a></li>
-            <li onclick="display('catlog')"> <a href="?c=ece">ECE</a>  </li>
-            <li onclick="display('catlog')"> <a href="?c=mech">MECH</a> </li>
+            <li> <a onclick="display('catlog'); loadD('catlog','book_box.php?c=cse','true'); ">CSE</a></li>
+            <li> <a onclick="display('catlog'); loadD('catlog','book_box.php?c=ece','true');">ECE</a>  </li>
+            <li> <a onclick="display('catlog'); loadD('catlog','book_box.php?c=mech','true');">MECH</a> </li>
           </ul>
         </div>
       </li>
-      <li onclick="display('cart')"> <a href="?viewcart=1">Cart(<?php echo $cart; ?>)</a> </li>
+      <li onclick=""> <a onclick="loadD('cart','viewcart.php?viewcart=1','true'); display('cart')">Cart(<?php echo $cart; ?>)</a> </li>
       <div class="nav-btn">
          <label>
             <span></span>
@@ -101,8 +125,27 @@ session_start();
   </div>
    </form>
  </div>
- <div id="home">
-   <p>This will be homepage soon</p>
+ <div id="home" class="">
+   <div class="homepage">
+     <div>
+     <div class="quotes">
+       <p>       “The more that you read, the more things you will know. The more that you learn, the more places you’ll go.”
+</p>
+     </div>
+     <div class="quotes">
+       <p>“A book is a device to ignite the imagination.” ― Alan Bennett, The Uncommon Reader</p>
+     </div>
+     <div class="quotes">
+       <p>“The world of books is the most remarkable creation of man. Nothing else that he builds ever lasts. Monuments fall; nations perish; civilizations grow old and die out; and, after an era of darkness, new races build others. But in the world of books are volumes that have seen this happen again and again, and yet live on, still young, still as fresh as the day they were written, still telling men’s hearts of the hearts of men centuries dead.” — Clarence Shepard Day</p>
+     </div>
+     <div class="quotes">
+       <img src="images/home.jpg" alt="">
+     </div>
+   </div>
+ </div>
+   <div class="displaybook">
+
+   </div>
  </div>
  <div id="register">
     <?php
@@ -151,20 +194,11 @@ session_start();
  </div>
  <div id="catlog">
    <p>We are building this catlog page</p>
-  <?php
-    $cat=htmlspecialchars(isset($_GET["c"]));
-    if($cat){
-     include 'book_box.php';
-   }
-    ?>
+
  </div>
  <div id="cart">
-   <?php
-   $viewcart=htmlspecialchars(isset($_GET["viewcart"]));
-   if($viewcart){
-    include 'viewcart.php';
-  }
-    ?>
+   <p>in cart page</p>
+
  </div>
 </section>
  </body>
