@@ -4,10 +4,12 @@ session_start();
 ?>
 <?php
    $a=isset($_SESSION['user']);
+
  ?>
 <!DOCTYPE html>
 <html>
  <head>
+    <link rel="stylesheet" href="book_box_style.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="stylenav.css">
 	<title>Online book store</title>
@@ -17,7 +19,8 @@ session_start();
 
 
     function display(a) {
-      var b=["home","login","register","catlog"];
+      console.log("i was clicked");
+      var b=["home","login","register","catlog","cart"];
       for (var i = 0; i < b.length; i++) {
         document.getElementById(b[i]).style.display="none";
       }
@@ -27,18 +30,18 @@ session_start();
 
 	</script>
   <script>
-   function loadDoc() {
+   function loadDoc(b,page,t) {
      var xhttp = new XMLHttpRequest();
      xhttp.onreadystatechange = function() {
        if (this.readyState == 4 && this.status == 200) {
-         document.getElementById("login").innerHTML =this.responseText;
+         document.getElementById(b).innerHTML =this.responseText;
        }
      };
-     xhttp.open("GET", "account.php", true);
+     xhttp.open("GET", page , t);
      xhttp.send();
    }
    if(<?php echo "$a"; ?>){
-     loadDoc();
+     loadDoc("login",'account.php','true');
    }
  </script>
  </head>
@@ -48,6 +51,14 @@ session_start();
  ?>
  <?php
    $user_status=(isset($_SESSION['user'])?"Logout":"Login");
+   // $cart=(isset($_SESSION["cartItems"])?$_SESSION["cartItems"]:"0");
+   $user=(isset($_SESSION['user'])?$_SESSION['user']:'false');
+   if($user){
+     $query="SELECT * FROM `cart` WHERE usr_email='$user'";
+     $boo_id=mysqli_query($connect,$query);
+     $count=mysqli_num_rows($boo_id);
+     $cart=$count;
+   }
  ?>
  <nav>
    <div class="heading">Online book Store </div>
@@ -59,13 +70,13 @@ session_start();
       <li class="dropdown_parent"> <a onclick="display('catlog')">Catlog</a>
         <div class="dropdown">
           <ul>
-            <li onmouseup="display('catlog')"> <a href="?c=cse">CSE</a>  </li>
+            <li onclick="display('catlog')"> <a href="?c=cse">CSE</a></li>
             <li onclick="display('catlog')"> <a href="?c=ece">ECE</a>  </li>
             <li onclick="display('catlog')"> <a href="?c=mech">MECH</a> </li>
           </ul>
         </div>
       </li>
-      <li> <a href="">Cart</a> </li>
+      <li onclick="display('cart')"> <a href="?viewcart=1">Cart(<?php echo $cart; ?>)</a> </li>
       <div class="nav-btn">
          <label>
             <span></span>
@@ -75,7 +86,7 @@ session_start();
       </div>
    </ul>
  </nav>
- <section>
+ <section class="navmargin">
 
  <div id="login">
    <form class="forms" method="post" action="login_check.php">
@@ -139,8 +150,21 @@ session_start();
      </form>
  </div>
  <div id="catlog">
-   <p>We are building this page</p>
-   <?php include 'book_box.php'; ?>
+   <p>We are building this catlog page</p>
+  <?php
+    $cat=htmlspecialchars(isset($_GET["c"]));
+    if($cat){
+     include 'book_box.php';
+   }
+    ?>
+ </div>
+ <div id="cart">
+   <?php
+   $viewcart=htmlspecialchars(isset($_GET["viewcart"]));
+   if($viewcart){
+    include 'viewcart.php';
+  }
+    ?>
  </div>
 </section>
  </body>

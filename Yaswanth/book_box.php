@@ -11,13 +11,26 @@
       include 'db_conn.php';
     ?>
     <?php
+
+     // count number of cart cartItems
+     $a=isset($_SESSION['user']);
+     if($a){
+        $user=$_SESSION['user'];
+        $query="SELECT * FROM `cart` WHERE usr_email='$user'";
+        $boo_id=mysqli_query($connect,$query);
+        $count=mysqli_num_rows($boo_id);
+        $_SESSION["cartItems"]=$count;
+
+     }
      $cat=htmlspecialchars($_GET["c"]);
      if ($cat==="cart") {
         $a=isset($_SESSION['user']);
         if($a){
            $user=$_SESSION['user'];
-           $query="SELECT * FROM `cart` WHERE usr_email='$user'";
-           $boo_id=mysqli_query($connect,$bquery);
+           $uery="SELECT * FROM `cart` WHERE usr_email='$user'";
+           $boo_id=mysqli_query($connect,$uery);
+           $count=mysqli_num_rows($boo_id);
+           $_SESSION["cartItems"]=$count;
 
         }else{
           echo "<script>alert('Please login first');</script>";
@@ -51,7 +64,9 @@
          </ul>
         </div>
       </div>
-      <?php } ?>
+      <?php }
+       echo "<script>display('catlog');</script>";
+      ?>
     </div>
   </body>
 </html>

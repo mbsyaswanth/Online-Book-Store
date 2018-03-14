@@ -5,6 +5,7 @@
 // Start the session
 session_start();
 ?>
+
 <?php
 $a=isset($_SESSION['user']);
 if($a){

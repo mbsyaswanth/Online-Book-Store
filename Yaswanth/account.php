@@ -11,7 +11,11 @@ session_start();
   $result=mysqli_query($connect,$query);
   $row=mysqli_fetch_assoc($result);
 ?>
-<p>Name:<?php echo $row['usr_name']; ?></p>
-<p>Email:<?php echo $row['usr_email']; ?></p>
-<p>Phone:<?php echo $row['usr_phone']; ?></p>
-<p><a href="logout.php">Logout</a></p>
+<div class="adetails">
+   <div class="aholder">
+    <div class="item"><span>Name:</span><?php echo $row['usr_name']; ?></div>
+    <div class="item"><span>Email:</span><?php echo $row['usr_email']; ?></div>
+    <div class="item"><span>Phone:</span><?php echo $row['usr_phone']; ?></div>
+    <div class="item"><a class="abutton" href="logout.php">Logout</a></div>
+  </div>
+</div>

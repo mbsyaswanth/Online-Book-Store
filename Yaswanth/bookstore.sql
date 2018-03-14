@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 11, 2018 at 08:23 PM
+-- Generation Time: Mar 14, 2018 at 04:23 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -73,7 +73,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `usr_email`, `book_id`, `book_quantity`) VALUES
-(1, 'mbs.yaswanth@gmail.com', 3, 1);
+(2, 'mbs.yaswanth@gmail.com', 1, 1),
+(3, 'mbs.yaswanth@gmail.com', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -134,7 +135,7 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `login`
